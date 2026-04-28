@@ -87,9 +87,24 @@
       display:flex;
       flex-direction:column;
       gap:var(--space-6)
+    }
 
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+    .sidebar::-webkit-scrollbar{
+      width: 10px;
+    }
+
+    .sidebar::-webkit-scrollbar-track{
+      background: var(--color-scrollbar-track);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb{
+      background: var(--color-scrollbar-thumb);
+      border-radius: 999px;
+      border: 2px solid var(--color-scrollbar-track);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover{
+      background: var(--color-primary);
     }
 
     .brand{display:flex;align-items:center;gap:var(--space-3)}
