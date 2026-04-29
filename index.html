@@ -309,11 +309,15 @@
     </aside>
 
     <main class="main" id="main-content">
-  <section class="hero">
-    <div>
+  <section class="hero hero-single">
+    <div class="hero-copy full-row">
       <span class="eyebrow">Google Solution Challenge prototype</span>
       <h2>Inspect unfair decisions before they affect real people.</h2>
-      <p>EquiLens audits datasets and model outcomes, highlights hidden disparities, explains fairness risks in plain language, and compares mitigation strategies before an automated system is deployed.</p>
+      <p>
+        EquiLens audits datasets and model outcomes, highlights hidden disparities,
+        explains fairness risks in plain language, and compares mitigation strategies
+        before an automated system is deployed.
+      </p>
       <div class="hero-actions">
         <button class="btn btn-primary" id="runAudit">Run fairness audit</button>
         <button class="btn" id="jumpMitigation">Apply mitigation</button>
@@ -322,22 +326,32 @@
   </section>
 
   <section class="section" id="overview">
-    <div class="grid cols-4">
+    <div class="section-header">
+      <h3>Overview of the data</h3>
+      <p class="muted">
+        Synthetic candidate records used to demonstrate fairness auditing before deployment.
+      </p>
+    </div>
+
+    <div class="grid cols-4 stat-grid">
       <article class="card stat">
         <span class="tiny">Applicants</span>
         <strong>840</strong>
         <span class="muted">Synthetic candidate records generated for demo.</span>
       </article>
+
       <article class="card stat">
         <span class="tiny">Protected groups</span>
         <strong>4</strong>
         <span class="muted">Gender, caste, disability, and region.</span>
       </article>
+
       <article class="card stat">
         <span class="tiny">Risk alerts</span>
         <strong>7</strong>
         <span class="muted">Proxy, selection-rate, and false-negative warnings.</span>
       </article>
+
       <article class="card stat">
         <span class="tiny">Status</span>
         <strong>Do not deploy</strong>
@@ -345,18 +359,14 @@
       </article>
     </div>
 
-    <div class="grid cols-2">
-      <article class="card">
-        <h3>Why this dataset works for demo</h3>
-        <p class="muted">The synthetic dataset is designed with an intentionally unfair historical screening pattern: privileged urban men from elite institutes are shortlisted at much higher rates, while equally qualified women, disabled candidates, and applicants from marginalized caste groups are filtered out more often.</p>
-      </article>
-      <article class="card">
-        <h3>What EquiLens shows</h3>
-        <p class="muted">The prototype demonstrates the full audit journey: dataset review, subgroup disparity checks, proxy detection, model fairness metrics, mitigation comparison, and a final plain-language report for decision-makers.</p>
-      </article>
+    <div class="section-header">
+      <h3>Statistics of the data</h3>
+      <p class="muted">
+        Key fairness indicators from the baseline and mitigated model outputs.
+      </p>
     </div>
 
-    <div class="hero-panel metrics-panel">
+    <div class="card metrics-panel">
       <div class="metric-inline">
         <div>
           <div class="tiny">Baseline selection rate gap</div>
@@ -364,6 +374,7 @@
         </div>
         <span class="pill error">High risk</span>
       </div>
+
       <div class="metric-inline">
         <div>
           <div class="tiny">Disparate impact ratio</div>
@@ -371,6 +382,7 @@
         </div>
         <span class="pill warn">Flagged</span>
       </div>
+
       <div class="metric-inline">
         <div>
           <div class="tiny">After mitigation</div>
@@ -378,46 +390,34 @@
         </div>
         <span class="pill success">Improved</span>
       </div>
-      <p class="footer-note">Synthetic use case: automated hiring shortlist model for entry-level analyst roles.</p>
+
+      <p class="footer-note">
+        Synthetic use case: automated hiring shortlist model for entry-level analyst roles.
+      </p>
+    </div>
+
+    <div class="grid cols-2 explanation-grid">
+      <article class="card">
+        <h3>Why this dataset works for demo</h3>
+        <p class="muted">
+          The synthetic dataset is designed with an intentionally unfair historical
+          screening pattern: privileged urban men from elite institutes are shortlisted
+          at much higher rates, while equally qualified women, disabled candidates, and
+          applicants from marginalized caste groups are filtered out more often.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>What EquiLens shows</h3>
+        <p class="muted">
+          The prototype demonstrates the full audit journey: dataset review, subgroup
+          disparity checks, proxy detection, model fairness metrics, mitigation comparison,
+          and a final plain-language report for decision-makers.
+        </p>
+      </article>
     </div>
   </section>
 </main>
-
-      <section class="section" id="overview">
-        <div class="grid cols-4">
-          <article class="card stat">
-            <span class="tiny">Applicants</span>
-            <strong>840</strong>
-            <span class="muted">Synthetic candidate records generated for demo.</span>
-          </article>
-          <article class="card stat">
-            <span class="tiny">Protected groups</span>
-            <strong>4</strong>
-            <span class="muted">Gender, caste, disability, and region.</span>
-          </article>
-          <article class="card stat">
-            <span class="tiny">Risk alerts</span>
-            <strong>7</strong>
-            <span class="muted">Proxy, selection-rate, and false-negative warnings.</span>
-          </article>
-          <article class="card stat">
-            <span class="tiny">Status</span>
-            <strong>Do not deploy</strong>
-            <span class="muted">Baseline model shows severe allocation harm.</span>
-          </article>
-        </div>
-
-        <div class="grid cols-2">
-          <article class="card">
-            <h3>Why this dataset works for demo</h3>
-            <p class="muted">The synthetic dataset is designed with an intentionally unfair historical screening pattern: privileged urban men from elite institutes are shortlisted at much higher rates, while equally qualified women, disabled candidates, and applicants from marginalized caste groups are filtered out more often.</p>
-          </article>
-          <article class="card">
-            <h3>What EquiLens shows</h3>
-            <p class="muted">The prototype demonstrates the full audit journey: dataset review, subgroup disparity checks, proxy detection, model fairness metrics, mitigation comparison, and a final plain-language report for decision-makers.</p>
-          </article>
-        </div>
-      </section>
 
       <section class="section" id="dataset">
         <div class="grid cols-2">
