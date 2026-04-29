@@ -83,7 +83,6 @@
       position:sticky;
       top:0;
       height:100vh;
-      overflow-y:fix;
       display:flex;
       flex-direction:column;
       gap:var(--space-6)
@@ -150,7 +149,9 @@
       border-radius:calc(var(--radius-xl) + 4px);
       padding:clamp(1.5rem,3vw,3rem);
       box-shadow:var(--shadow-md);
-      display:block;
+      display:grid;
+      grid-template-columns:1.4fr .9fr;
+      gap:var(--space-6)
     }
 
     .eyebrow{
@@ -165,15 +166,10 @@
       font-size:var(--text-2xl);
       line-height:1.02;
       margin:.9rem 0 1rem;
-      max-width:100%;
+      max-width:12ch
     }
 
-    .hero p{
-      color:var(--color-text-muted);
-      max-width:100%;
-      margin:0 0 1.4rem;
-    }
-    
+    .hero p{color:var(--color-text-muted);max-width:58ch;margin:0 0 1.4rem}
     .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-3)}
 
     .btn{
@@ -211,25 +207,6 @@
       padding:var(--space-5);
       box-shadow:var(--shadow-sm)
     }
-    
-    .hero-single { display: block; }
-    .hero-copy.full-row { width: 100%; max-width: 100%; }
-    .hero-copy.full-row p { max-width: 900px; }
-    #overview { display: flex; flex-direction: column; gap: 1.5rem; }
-    .section-header { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.5rem; }
-    .section-header h3 { margin: 0; }
-    .stat-grid { margin-bottom: 0.5rem; }
-    .metrics-panel { padding: 1.25rem 1.5rem; margin-top: 0; }
-    .metrics-panel .metric-inline {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 1rem; padding: 0.9rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .metrics-panel .metric-inline:last-of-type { border-bottom: none; }
-    .metrics-panel strong { font-size: 1.9rem; line-height: 1.1; }
-    .explanation-grid { margin-top: 0.25rem; }
-    .footer-note { margin-top: 1rem; }
 
     .card h3,.card h4{margin:0 0 .7rem}
     .card h3{font-size:var(--text-lg);letter-spacing:-.03em}
@@ -331,115 +308,77 @@
     </aside>
 
     <main class="main" id="main-content">
-  <section class="hero hero-single">
-    <div class="hero-copy full-row">
-      <span class="eyebrow">Google Solution Challenge prototype</span>
-      <h2>Inspect unfair decisions before they affect real people.</h2>
-      <p>
-        EquiLens audits datasets and model outcomes, highlights hidden disparities,
-        explains fairness risks in plain language, and compares mitigation strategies
-        before an automated system is deployed.
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" id="runAudit">Run fairness audit</button>
-        <button class="btn" id="jumpMitigation">Apply mitigation</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="overview">
-    <div class="section-header">
-      <h3>Overview of the data</h3>
-      <p class="muted">
-        Synthetic candidate records used to demonstrate fairness auditing before deployment.
-      </p>
-    </div>
-
-    <div class="grid cols-4 stat-grid">
-      <article class="card stat">
-        <span class="tiny">Applicants</span>
-        <strong>840</strong>
-        <span class="muted">Synthetic candidate records generated for demo.</span>
-      </article>
-
-      <article class="card stat">
-        <span class="tiny">Protected groups</span>
-        <strong>4</strong>
-        <span class="muted">Gender, caste, disability, and region.</span>
-      </article>
-
-      <article class="card stat">
-        <span class="tiny">Risk alerts</span>
-        <strong>7</strong>
-        <span class="muted">Proxy, selection-rate, and false-negative warnings.</span>
-      </article>
-
-      <article class="card stat">
-        <span class="tiny">Status</span>
-        <strong>Do not deploy</strong>
-        <span class="muted">Baseline model shows severe allocation harm.</span>
-      </article>
-    </div>
-
-    <div class="section-header">
-      <h3>Statistics of the data</h3>
-      <p class="muted">
-        Key fairness indicators from the baseline and mitigated model outputs.
-      </p>
-    </div>
-
-    <div class="card metrics-panel">
-      <div class="metric-inline">
+      <section class="hero">
         <div>
-          <div class="tiny">Baseline selection rate gap</div>
-          <strong id="heroGap">31 pts</strong>
+          <span class="eyebrow">Google Solution Challenge prototype</span>
+          <h2>Inspect unfair decisions before they affect real people.</h2>
+          <p>EquiLens audits datasets and model outcomes, highlights hidden disparities, explains fairness risks in plain language, and compares mitigation strategies before an automated system is deployed.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="runAudit">Run fairness audit</button>
+            <button class="btn" id="jumpMitigation">Apply mitigation</button>
+          </div>
         </div>
-        <span class="pill error">High risk</span>
-      </div>
-
-      <div class="metric-inline">
-        <div>
-          <div class="tiny">Disparate impact ratio</div>
-          <strong id="heroDIR">0.41</strong>
+        <div class="hero-panel">
+          <div class="metric-inline">
+            <div>
+              <div class="tiny">Baseline selection rate gap</div>
+              <strong id="heroGap">31 pts</strong>
+            </div>
+            <span class="pill error">High risk</span>
+          </div>
+          <div class="metric-inline">
+            <div>
+              <div class="tiny">Disparate impact ratio</div>
+              <strong id="heroDIR">0.41</strong>
+            </div>
+            <span class="pill warn">Flagged</span>
+          </div>
+          <div class="metric-inline">
+            <div>
+              <div class="tiny">After mitigation</div>
+              <strong id="heroAfter">0.82</strong>
+            </div>
+            <span class="pill success">Improved</span>
+          </div>
+          <p class="footer-note">Synthetic use case: automated hiring shortlist model for entry-level analyst roles.</p>
         </div>
-        <span class="pill warn">Flagged</span>
-      </div>
+      </section>
 
-      <div class="metric-inline">
-        <div>
-          <div class="tiny">After mitigation</div>
-          <strong id="heroAfter">0.82</strong>
+      <section class="section" id="overview">
+        <div class="grid cols-4">
+          <article class="card stat">
+            <span class="tiny">Applicants</span>
+            <strong>840</strong>
+            <span class="muted">Synthetic candidate records generated for demo.</span>
+          </article>
+          <article class="card stat">
+            <span class="tiny">Protected groups</span>
+            <strong>4</strong>
+            <span class="muted">Gender, caste, disability, and region.</span>
+          </article>
+          <article class="card stat">
+            <span class="tiny">Risk alerts</span>
+            <strong>7</strong>
+            <span class="muted">Proxy, selection-rate, and false-negative warnings.</span>
+          </article>
+          <article class="card stat">
+            <span class="tiny">Status</span>
+            <strong>Do not deploy</strong>
+            <span class="muted">Baseline model shows severe allocation harm.</span>
+          </article>
         </div>
-        <span class="pill success">Improved</span>
-      </div>
 
-      <p class="footer-note">
-        Synthetic use case: automated hiring shortlist model for entry-level analyst roles.
-      </p>
-    </div>
-
-    <div class="grid cols-2 explanation-grid">
-      <article class="card">
-        <h3>Why this dataset works for demo</h3>
-        <p class="muted">
-          The synthetic dataset is designed with an intentionally unfair historical
-          screening pattern: privileged urban men from elite institutes are shortlisted
-          at much higher rates, while equally qualified women, disabled candidates, and
-          applicants from marginalized caste groups are filtered out more often.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>What EquiLens shows</h3>
-        <p class="muted">
-          The prototype demonstrates the full audit journey: dataset review, subgroup
-          disparity checks, proxy detection, model fairness metrics, mitigation comparison,
-          and a final plain-language report for decision-makers.
-        </p>
-      </article>
-    </div>
-  </section>
-</main>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3>Why this dataset works for demo</h3>
+            <p class="muted">The synthetic dataset is designed with an intentionally unfair historical screening pattern: privileged urban men from elite institutes are shortlisted at much higher rates, while equally qualified women, disabled candidates, and applicants from marginalized caste groups are filtered out more often.</p>
+          </article>
+          <article class="card">
+            <h3>What EquiLens shows</h3>
+            <p class="muted">The prototype demonstrates the full audit journey: dataset review, subgroup disparity checks, proxy detection, model fairness metrics, mitigation comparison, and a final plain-language report for decision-makers.</p>
+          </article>
+        </div>
+      </section>
 
       <section class="section" id="dataset">
         <div class="grid cols-2">
@@ -510,7 +449,7 @@
             <div class="bar-list" id="selectionBars"></div>
           </article>
           <article class="card">
-            <h3>Explanation (Gemini)</h3>
+            <h3>Gemini-style explanation</h3>
             <p class="muted">The audit suggests the model is not only learning merit signals such as aptitude score and interview score, but also reproducing historical preference for urban, elite-institute, non-disabled, upper-caste male applicants. Several proxy variables appear to encode structural disadvantage rather than job relevance.</p>
             <div class="risk-box" style="margin-top:1rem">
               <span class="pill error">Deployment blocked</span>
